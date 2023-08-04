@@ -9,7 +9,7 @@ export default function Private({ children }) {
 
     useEffect(() => {
         async function checkLogin() {
-            const unsub = onAuthStateChanged(auth, (user) => {
+            onAuthStateChanged(auth, (user) => {
                 if (user) {
                     const userData = {
                         uid: user.uid,
@@ -26,15 +26,16 @@ export default function Private({ children }) {
                 }
             })
         }
+
+        checkLogin();
     }, [])
 
-    if (!signed) {
-        return <Navigate to={'/'} />
-    }
 
     if (loading) {
         return (<div></div>)
     }
-
+    if (!signed) {
+        return <Navigate to={'/'} />
+    }
     return children;
 }
