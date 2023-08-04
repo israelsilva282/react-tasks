@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './home.css';
+import styles from './home.module.css';
 
 function Home() {
     const [email, setEmail] = useState('');
@@ -17,11 +17,11 @@ function Home() {
     }
 
     return (
-        <div className='home-container'>
+        <div className={styles.container}>
             <h1>Lista de tarefas</h1>
             <span>Gerencia sua agenda de forma fácil</span>
 
-            <form className='form' onSubmit={handleLogin}>
+            <form className={styles.form} onSubmit={handleLogin}>
                 <input
                     type="text"
                     placeholder='Digite seu email...'
@@ -37,7 +37,7 @@ function Home() {
                 <button type='submit'>Acessar</button>
             </form>
 
-            <Link to={'/register'} className='btn-link'>Não possui uma conta? Cadastre-se</Link>
+            <Link to={'/register'} className={styles.btnLink}>Não possui uma conta? Cadastre-se</Link>
         </div>
     )
 }
