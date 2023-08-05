@@ -44,34 +44,42 @@
 
 .btnRegister {
   margin-bottom: 28px;
+  font-weight: bold;
 }
 
 .list {
   width: 90%;
   max-width: 600px;
   display: flex;
-  flex-direction: column;
   background-color: rgba(18, 18, 18, 0.38);
   border-radius: 4px;
   margin-bottom: 12px;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   padding: 14px 8px;
 }
 
 .list p {
-  margin-bottom: 8px;
+  width: 60%;
+  word-wrap: break-word;
 }
 
 .list button {
   margin-right: 8px;
   border: 0;
   border-radius: 4px;
-  padding: 4px;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.btnEdit {
+  background-color: #3366ff;
+  color: #fff;
 }
 
 .btnDelete {
-  color: #ffcc23;
-  background-color: transparent;
+  color: #fff;
+  background-color: #6add39;
 }
 
 .btnLogout {

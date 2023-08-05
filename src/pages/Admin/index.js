@@ -12,6 +12,7 @@ import {
     onSnapshot,
     orderBy,
     query,
+    updateDoc,
     where
 } from 'firebase/firestore'
 
@@ -19,6 +20,7 @@ export default function Admin() {
     const [tarefaInput, setTarefaInput] = useState('')
     const [user, setUser] = useState({})
     const [tarefas, setTarefas] = useState([])
+    const [editTarefa, setEditTarefa] = useState([])
 
     useEffect(() => {
         async function loadTarefas() {
@@ -29,7 +31,7 @@ export default function Admin() {
                 const data = JSON.parse(userDetail)
                 const tarefaRef = collection(db, "tarefas")
                 const q = query(tarefaRef, orderBy("created", "desc"), where("userUid", "==", data?.uid))
-                const unsub = onSnapshot(q, (snapshot) => {
+                onSnapshot(q, (snapshot) => {
                     let lista = [];
 
                     snapshot.forEach((doc) => {
@@ -56,6 +58,11 @@ export default function Admin() {
             return;
         }
 
+        if (editTarefa?.id) {
+            handleUpdateTarefa();
+            return
+        }
+
         await addDoc(collection(db, "tarefas"), {
             tarefa: tarefaInput,
             created: new Date(),
@@ -80,6 +87,27 @@ export default function Admin() {
         await deleteDoc(docRef)
     }
 
+    async function handleEdit(item) {
+        setTarefaInput(item.tarefa)
+        setEditTarefa(item)
+    }
+
+    async function handleUpdateTarefa() {
+        const docRef = doc(db, "tarefas", editTarefa?.id)
+        await updateDoc(docRef, {
+            tarefa: tarefaInput,
+        })
+            .then(() => {
+                setTarefaInput('')
+                setEditTarefa('')
+            })
+            .catch(() => {
+                alert("ERRO AO ATUALIZAR")
+                setTarefaInput('')
+                setEditTarefa('')
+            })
+    }
+
     return (
         <div className={styles.container}>
             <h1>Minhas tarefas</h1>
@@ -91,7 +119,13 @@ export default function Admin() {
                     onChange={(e) => setTarefaInput(e.target.value)}
                 />
 
-                <button className={styles.btnRegister} type="submit">Registrar tarefa</button>
+                {Object.keys(editTarefa).length > 0 ? (
+                    <button
+                        className={styles.btnRegister} type="submit"
+                        style={{ backgroundColor: '#6add39' }}>Atualizar tarefa</button>
+                ) : (
+                    <button className={styles.btnRegister} type="submit">Registrar tarefa</button>
+                )}
             </form>
 
             {tarefas.map((item) => (
@@ -99,7 +133,7 @@ export default function Admin() {
                     <p>{item.tarefa}</p>
 
                     <div>
-                        <button>Editar</button>
+                        <button className={styles.btnEdit} onClick={() => handleEdit(item)}>Editar</button>
                         <button className={styles.btnDelete} onClick={() => handleDelete(item.id)}>Concluir</button>
                     </div>
                 </article>
