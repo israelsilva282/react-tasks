@@ -7,6 +7,8 @@ import { auth, db } from '../../firebaseConnection'
 import {
     addDoc,
     collection,
+    deleteDoc,
+    doc,
     onSnapshot,
     orderBy,
     query,
@@ -60,7 +62,6 @@ export default function Admin() {
             userUid: user?.uid
         })
             .then(() => {
-                console.log("TAREFA REGISTRADA")
                 setTarefaInput('')
             })
             .catch((error) => {
@@ -72,6 +73,11 @@ export default function Admin() {
 
     async function handleLogout() {
         await signOut(auth);
+    }
+
+    async function handleDelete(id) {
+        const docRef = doc(db, "tarefas", id)
+        await deleteDoc(docRef)
     }
 
     return (
@@ -88,14 +94,16 @@ export default function Admin() {
                 <button className={styles.btnRegister} type="submit">Registrar tarefa</button>
             </form>
 
-            <article className={styles.list}>
-                <p>Estudar javascript e reactjs hoje a noite</p>
+            {tarefas.map((item) => (
+                <article className={styles.list} key={item.id}>
+                    <p>{item.tarefa}</p>
 
-                <div>
-                    <button>Editar</button>
-                    <button className={styles.btnDelete}>Concluir</button>
-                </div>
-            </article>
+                    <div>
+                        <button>Editar</button>
+                        <button className={styles.btnDelete} onClick={() => handleDelete(item.id)}>Concluir</button>
+                    </div>
+                </article>
+            ))}
 
 
             <button className={styles.btnLogout} onClick={handleLogout}>Sair</button>
