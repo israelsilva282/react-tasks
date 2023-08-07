@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Projeto To-Do List em ReactJS e Firebase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto desenvolvido em ReactJS e Firebase para criar um sistema de registro de tarefas (to-do list). Ele permite que os usuários cadastrem suas tarefas, as gerenciem e as acompanhem através de uma interface amigável.
 
-## Available Scripts
+## Instalação
 
-In the project directory, you can run:
+Antes de executar o projeto, é necessário ter o Node.js e o npm instalados em sua máquina. Caso ainda não tenha, você pode baixá-los e instalá-los através do site oficial do [Node.js](https://nodejs.org/).
 
-### `npm start`
+Após instalar o Node.js, siga os passos abaixo:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone este repositório para o seu computador usando o seguinte comando:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://github.com/israelsilva282/react-tasks.git
+```
 
-### `npm test`
+2. Navegue até o diretório do projeto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+cd react-tasks
+```
 
-### `npm run build`
+3. Instale as dependências do projeto:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Execução
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Caso queira adicionar seu próprio banco de dados Firebase, acesse o site, crie um novo projeto, e copie as informações de configuração no arquivo firebaseConnection.js, localizado na pasta "src/".
 
-### `npm run eject`
+Após isso, inicie o ambiente de desenvolvimento da seguinte maneira:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+O comando acima irá iniciar o servidor de desenvolvimento e o projeto estará disponível no navegador através do endereço http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Telas e rotas
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+A seguir, estão as rotas do site com suas respectivas descrições:
 
-## Learn More
+1. /
+   ![Página de login](./src/images/tela_inicial.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   Nesta página, os usuários poderão efetuar o login em suas contas para acessar a área de administração e gerenciar suas tarefas.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. /register
+   ![Tela de cadastro](./src/images/tela_register.png)
 
-### Code Splitting
+   Aqui, os usuários podem se cadastrar para criar uma conta no sistema e utilizar a funcionalidade de registro de tarefas.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. /admin
+   ![Alt text](./src/images/tela_admin.png)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   Essa é a página onde os usuários autenticados poderão adicionar, remover, listar e editar suas tarefas.
