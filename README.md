@@ -2,6 +2,9 @@
 
 Este é um projeto desenvolvido em ReactJS e Firebase para criar um sistema de registro de tarefas (to-do list). Ele permite que os usuários cadastrem suas tarefas, as gerenciem e as acompanhem através de uma interface amigável.
 
+## Link
+O site se encontra no ar, através do endereço https://react-todo-tasks.netlify.app/
+
 ## Instalação
 
 Antes de executar o projeto, é necessário ter o Node.js e o npm instalados em sua máquina. Caso ainda não tenha, você pode baixá-los e instalá-los através do site oficial do [Node.js](https://nodejs.org/).
